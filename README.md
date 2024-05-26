@@ -1,11 +1,26 @@
 # de_airflow_w10
-데브코스 데이터 엔지니어링 10주차 실습 과제
+### DAG 작성 실습
 
-세계 나라 정보 API를 사용하여 Full Refresh로 매번 국가 정보를 읽어오는 DAG를 작성한다.
+<ol>songeun_w10_CountryInfo.py</ol> <br>
+api를 통해 아래의 정보를 읽어와 Redshift에 테이블을 생성하고 적재하는 DAG <br>
+Full Refresh <br>
+UTC로 매주 토요일 오전 6시 30분에 실행되도록 스케줄링 <br>
+<br>
+country: 국가명<br>
+population: 인구수<br>
+area: 국토 면적<br>
 
-<li>api 결과에서 아래 세개의 정보를 추출하여 Redshift에 각자 스키마 밑에 테이블을 생성해 데이터 적재<br>
-  country -> ["name"]["official"]<br>
-  population -> ["population"]<br>
-  area -> ["area"]<br>
+<br><br>
 
-<li>DAG는 UTC로 매주 토요일 오전 6시 30분에 실행되도록 스케줄링
+<ol>songeun_w10_OpenWeather.py</ol> <br>
+api를 통해 아래의 정보를 읽어와 Redshift에 테이블을 생성하고 적재하는 DAG <br>
+Full Refresh <br>
+
+<br>
+date: 날짜<br>
+temp: 낮 기온<br>
+min_temp: 최저 기온<br>
+max_temp: 최고 기온<br>
+created_date: 생성 날짜(api X)<br>
+
+<br><br>
