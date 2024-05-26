@@ -13,18 +13,6 @@ area: 국토 면적<br>
 
 <br><br>
 
-<li>songeun_w10_OpenWeather.py</li> <br>
-api를 통해 아래의 정보를 읽어와 Redshift에 테이블을 생성하고 적재하는 DAG <br>
-Full Refresh <br>
-
-<br>
-date: 날짜<br>
-temp: 낮 기온<br>
-min_temp: 최저 기온<br>
-max_temp: 최고 기온<br>
-created_date: 생성 날짜(api X)<br>
-
-<br><br>
 
 
 </ol>
