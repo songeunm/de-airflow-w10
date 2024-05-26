@@ -42,9 +42,9 @@ def load(schema, table, records):
         cur.execute(f"DROP TABLE IF EXISTS {schema}.{table};")
         cur.execute(f"""
 CREATE TABLE {schema}.{table} (
-    country varchar,
-    population float,
-    area bigint
+    country varchar(256) primary key,
+    population int,
+    area float
 );
 """)
         
@@ -64,8 +64,8 @@ CREATE TABLE {schema}.{table} (
 with DAG(
     dag_id = 'CountryInfo',
     start_date = datetime(2024,5,25),
-    catchup = False
-    tags = ['API']
+    catchup = False,
+    tags = ['API'],
     schedule = '30 6 * * 6'
 ) as dag:
 
