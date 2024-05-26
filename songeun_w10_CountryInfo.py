@@ -16,7 +16,7 @@ def get_Redshift_connection(autocommit=True):
 
 
 @task
-def get():
+def extract_transform():
     ####
     # 세계 나라 정보 API를 사용해 국가 정보(country, population, area) 읽어오기
     ####
@@ -25,8 +25,14 @@ def get():
     json_data = req.json()
 
     records = []
-    for d in json_data:
-        records.append([d['name']['official'], d['population'], d['area']])
+    for data in json_data:
+        c = data['name']['official']
+        p = data['population']
+        a = data['area']
+        if "\'" in c:
+            c = c.replace("\'", "\'\'") # single quote escape 처리
+            print(c)
+        records.append([c, p, a])
 
     return records
 
@@ -49,7 +55,7 @@ CREATE TABLE {schema}.{table} (
 """)
         
         for r in records:
-            sql = f"INSERT INTO {schema}.{table} VALUES ('{r[0]}', '{r[1]}', '{r[2]}');"
+            sql = f"INSERT INTO {schema}.{table} VALUES ('{r[0]}', {r[1]}, {r[2]});"
             print(sql)
             cur.execute(sql)
         cur.execute("COMMIT;")
@@ -69,5 +75,5 @@ with DAG(
     schedule = '30 6 * * 6'
 ) as dag:
 
-    results = get()
+    results = extract_transform()
     load("thdrms_dl", "country_info", results)
