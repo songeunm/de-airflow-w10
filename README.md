@@ -13,6 +13,10 @@ area: 국토 면적<br>
 
 <br><br>
 
-
+<li>MySQL_to_Redshift_v3.py</li> <br>
+MySQL에서 데이터를 읽어와 s3에 적재한 뒤 Redshift로 Bulk Update하는 DAG <br>
+기존에 맥스님께서 제공하신 MySQL_to_Redshift_v2.py 파일에서 나의 schema로 변경하고, schema 밑에 nps 테이블 생성하는 task를 추가 <br>
+Incremental <br>
+<br>
 
 </ol>
